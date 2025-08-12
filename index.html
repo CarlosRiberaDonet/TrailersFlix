@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PeliculasOnlineHD</title>
+    <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="language" content="Spanish" />
+  <meta name="author" content="Carlos Ribera Donet" />
+</head>
+<body>
+<header class="main-header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="./assets/images/logo.png" alt="PeliculasOnlineHD" />
+    </a>
+  </div>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="#">Películas</a></li>
+      <li><a href="#">Series</a></li>
+      <li><a href="#">Estrenos</a></li>
+      <li class="has-dropdown">
+        <a href="#">Categorías</a>
+        <ul class="dropdown">
+          <li><a href="#">Acción</a></li>
+          <li><a href="#">Comedia</a></li>
+          <li><a href="#">Drama</a></li>
+          <li><a href="#">Terror</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="search-bar">
+    <form role="search" aria-label="Buscar videos" autocomplete="off">
+      <input type="search" placeholder="Buscar..." aria-label="Buscar por nombre de video" />
+      <button type="submit" aria-label="Buscar">Buscar</button>
+    </form>
+  </div>
+</header>
+
+<main>
+  <section id="peliculas-list" aria-label="Listado de peliculas" role="list" itemscope itemtype="https://schema.org/ItemList">
+    <div id="peliculas-container"></div>
+  </section>
+</main>
+
+<script type="module" src="js/peliculas.js"></script>
+</body>
+</html>
