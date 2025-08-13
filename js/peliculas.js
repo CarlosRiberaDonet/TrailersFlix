@@ -3,8 +3,8 @@ import { abrirTrailer } from './trailer.js';
 // Obtener contenedor donde se insertarán las películas
 const contenedor = document.getElementById('peliculas-container');
 
-// Petición al backend para obtener películas (página 2)
-fetch('http://localhost:8080/peliculas?page=2')
+// Petición al backend para obtener películas (página 1)
+fetch("https://peliculasonlinehd.fly.dev/peliculas?page=1")
   .then(response => response.json())  // Convertir respuesta a JSON
   .then(data => {
     // Recorrer cada película en el array results
