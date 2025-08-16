@@ -496,6 +496,7 @@ body {
     width: 100%;
     height: auto;
     margin: 15px 0;
+    overflow-x: auto;  
   }
 
   #proximo-container {
@@ -599,7 +600,7 @@ body {
     flex-direction: column;
     border-radius: 8px;
     background-color: #1e1e1e;
-    overflow: hidden;
+    overflow-x: auto;  
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin: 0 auto;
   }
