@@ -244,12 +244,14 @@ body {
     margin: 40px auto;
   }
 
-  .fila-peliculas {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    -webkit-overflow-scrolling: touch; /* habilita scroll táctil en iOS */
-  }
+ .fila-peliculas {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
 
   .peliculas-wrapper {
     overflow: hidden;
@@ -287,7 +289,7 @@ body {
 
   .vote {
     margin-left: 10px;
-    color: gold;
+    color: #DAAD5C;
   }
 
   .pelicula-title {
@@ -336,14 +338,20 @@ body {
   }
 
   /* Botones de scroll */
-  .btn-scroll {
-    background: #333;
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    font-size: 1.5rem;
-  }
+   .btn-scroll {
+      background-color: rgba(31, 111, 235, 0.5); /* azul semi-transparente */
+      color: #DAAD5C;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+  .btn-scroll:hover {
+      background-color: #DAAD5C; /* color del texto original */
+      color: rgba(31, 111, 235, 1); /* azul sólido */
+    }
 
   /* ================
    CARRUSEL FAMOSOS
@@ -540,12 +548,6 @@ body {
     display: none;
   }
 
-  #proximo-container .proximo-item .btn-container {
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
   /* =========================
      CARRUSEL PELÍCULAS
      ========================= */
@@ -577,6 +579,7 @@ body {
     display: flex;
     gap: 0;
     transition: transform 0.3s ease;
+    -webkit-overflow-scrolling: touch;
   }
 
   .pelicula-item {
