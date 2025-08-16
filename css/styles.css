@@ -566,6 +566,7 @@ body {
   #cartelera-list {
     width: 90%;
     margin: 20px auto;
+    overflow-x: auto;  
   }
 
   .fila-peliculas {
@@ -573,11 +574,13 @@ body {
     flex-direction: row;
     gap: 0;
     scroll-snap-type: x mandatory;
+    overflow-x: auto;  
   }
 
   .peliculas-wrapper {
     width: 100%;
     scroll-snap-type: x mandatory;
+    overflow-x: auto;  
   }
 
   #peliculas-container {
