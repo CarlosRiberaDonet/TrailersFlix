@@ -5,7 +5,7 @@ import { SingleMovieSlider } from './SingleMovieSlider.js';
 document.addEventListener('DOMContentLoaded', () => {
 
   // Cargar el carrusel de próximos estrenos
-  fetch('http://localhost:8080/peliculas/upcoming')
+  fetch('https://peliculasonlinehd.fly.dev/peliculas/upcoming')
     .then(res => res.json())
     .then(data => {
       new SingleMovieSlider(
