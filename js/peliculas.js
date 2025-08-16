@@ -1,90 +1,100 @@
 import { abrirTrailer } from './trailer.js';
+import { initSlider } from './slider.js';
+import { SingleMovieSlider } from './SingleMovieSlider.js';
 
-// Obtener contenedor donde se insertarán las películas
-const contenedor = document.getElementById('peliculas-container');
 
-// Petición al backend para obtener películas (página 1)
-fetch(`https://peliculasonlinehd.fly.dev/peliculas?page=2`)
-  .then(response => response.json())  // Convertir respuesta a JSON
-  .then(data => {
-    // Recorrer cada película en el array results
-    data.results.forEach(pelicula => {
-      // Crear el artículo principal para cada película
-      const articulo = document.createElement('article');
-      articulo.classList.add('pelicula-item');
-      articulo.setAttribute('role', 'listitem');
-      articulo.setAttribute('aria-label', pelicula.title);
-      articulo.setAttribute('itemscope', '');
-      articulo.setAttribute('itemtype', 'https://schema.org/PeliculaObject');
+/**
+ * Función genérica para cargar películas en un contenedor y activar slider
+ * @param {string} url - Endpoint del backend para obtener las películas
+ * @param {string} contenedorId - ID del contenedor donde se agregarán las películas
+ * @param {string} prevBtnId - ID del botón de desplazamiento hacia atrás
+ * @param {string} nextBtnId - ID del botón de desplazamiento hacia adelante
+ * @param {number} elementosVisibles - Número de elementos visibles en el slider (para sliders tipo lista)
+ * @param {number} anchoElemento - Ancho de cada elemento del slider en píxeles
+ */
+export function cargarPeliculas(url, contenedorId, btnPrevId, btnNextId, elementosVisibles, anchoElemento) {
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const contenedor = document.getElementById(contenedorId);
+      contenedor.innerHTML = ''; // Limpiar contenido previo
 
-    // Imagen de portada
-      const img = document.createElement('img');
-    img.src = 'https://image.tmdb.org/t/p/w300' + pelicula.poster_path;
-    img.alt = pelicula.title;
-    img.classList.add('thumbnail');
-    img.setAttribute('itemprop', 'thumbnailUrl');
+      // Comprobamos si el contenedor es para hero banner (SingleMovieSlider) o lista
+      if (contenedorId === 'proximo-container') {
+        // Crear slider tipo hero banner usando SingleMovieSlider
+        new SingleMovieSlider(contenedorId, btnPrevId, btnNextId, data.results);
+        return;
+      }
 
-    // Crear div para mostrar la puntuación
-    const vote = document.createElement('div');
-    vote.classList.add('vote');
-    vote.setAttribute('itemprop', 'voteAverage');
+      // Para sliders de lista normal
+      data.results.forEach(pelicula => {
+        const articulo = document.createElement('article');
+        articulo.classList.add('pelicula-item');
+        articulo.setAttribute('role', 'listitem');
+        articulo.setAttribute('aria-label', pelicula.title);
+        articulo.setAttribute('itemscope', '');
+        articulo.setAttribute('itemtype', 'https://schema.org/PeliculaObject');
 
-    // Estrella dorada para la puntuación
-    const star = document.createElement('span');
-    star.textContent = '★';
-    star.style.color = 'gold';
+        // Imagen de portada
+        const img = document.createElement('img');
+        img.src = 'https://image.tmdb.org/t/p/w300' + pelicula.poster_path;
+        img.alt = pelicula.title;
+        img.classList.add('thumbnail');
+        img.setAttribute('itemprop', 'thumbnailUrl');
 
-    // Texto con la puntuación o 'N/A'
-    const score = document.createElement('span');
-    score.textContent = pelicula.vote_average !== undefined ? pelicula.vote_average.toFixed(1) : 'N/A';
 
-    // Agregar estrella y puntuación al contenedor vote
-    vote.appendChild(star);
-    vote.appendChild(score);
+        // Contenedor de puntuación
+        const vote = document.createElement('div');
+        vote.classList.add('vote');
+        vote.setAttribute('itemprop', 'voteAverage');
+        const star = document.createElement('span');
+        star.textContent = '★';
+        star.style.color = 'gold';
+        const score = document.createElement('span');
+        score.textContent = pelicula.vote_average !== undefined ? pelicula.vote_average.toFixed(1) : 'N/A';
+        vote.appendChild(star);
+        vote.appendChild(score);
 
-    // Crear título de la película
-    const title = document.createElement('h3');
-    title.classList.add('pelicula-title');
-    title.setAttribute('itemprop', 'name');
-    title.textContent = pelicula.title;
+        // Título
+        const title = document.createElement('h3');
+        title.classList.add('pelicula-title');
+        title.setAttribute('itemprop', 'name');
+        title.textContent = pelicula.title;
 
-    // Crear contenedor para botones
-    const botonesContainer = document.createElement('div');
-    botonesContainer.classList.add('botones-container');
+        // Botones
+        const botonesContainer = document.createElement('div');
+        botonesContainer.classList.add('botones-container');
+        const trailerBtn = document.createElement('button');
+        trailerBtn.textContent = 'Trailer';
+        trailerBtn.classList.add('btn-trailer');
+        trailerBtn.addEventListener('click', () => abrirTrailer(pelicula.id));
+        const infoBtn = document.createElement('button');
+        infoBtn.textContent = 'i';
+        infoBtn.classList.add('btn-info');
+        botonesContainer.appendChild(trailerBtn);
+        botonesContainer.appendChild(infoBtn);
 
-    // Botón trailer
-    const trailerBtn = document.createElement('button');
-    trailerBtn.textContent = 'Trailer';
-    trailerBtn.classList.add('btn-trailer');
+        // Construir artículo
+        articulo.appendChild(img);
+        articulo.appendChild(vote);
+        articulo.appendChild(title);
+        articulo.appendChild(botonesContainer);
 
-    // Listener que envía el id de la película para obtener el trailer
-    trailerBtn.addEventListener('click', () => {
-        console.log(pelicula.id); // revisa que tenga valor
-        abrirTrailer(pelicula.id);
-    });
+        // Agregar artículo al contenedor
+        contenedor.appendChild(articulo);
+      });
 
-    // Botón info redondo
-    const infoBtn = document.createElement('button');
-    infoBtn.textContent = 'i';
-    infoBtn.classList.add('btn-info');
+      // Inicializar slider tipo lista después de renderizar todas las películas
+      initSlider(contenedorId, btnPrevId, btnNextId, elementosVisibles, anchoElemento);
+    })
+    .catch(error => console.error(error));
+}
 
-    // Añadir botones al contenedor
-    botonesContainer.appendChild(trailerBtn);
-    botonesContainer.appendChild(infoBtn);
-
-    // Añadir elementos al artículo en orden vertical: puntuación, título, botones, imagen
-    articulo.appendChild(img);
-    articulo.appendChild(vote);
-    articulo.appendChild(title);
-    articulo.appendChild(botonesContainer);
-
-      // Añadir el artículo completo al contenedor principal
-      contenedor.appendChild(articulo);
-    });
-  })
-  .catch(error => console.error(error)); // Mostrar error si falla la petición
-
-// Función para formatear duración en horas y minutos (opcional)
+/**
+ * Función opcional para formatear duración en horas y minutos
+ * @param {number} minutos
+ * @returns {string} Formato "Xh Ym" o "Ym"
+ */
 function formatDuration(minutos) {
   const h = Math.floor(minutos / 60);
   const m = minutos % 60;

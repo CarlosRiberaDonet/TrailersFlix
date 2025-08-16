@@ -1,4 +1,6 @@
-/* Reset y base */
+/* =============================
+   RESET GENERAL
+   ============================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,37 +13,36 @@ body {
   color: #fff;
 }
 
-/* Header principal */
+  h2{
+     color: #DAAD5C;
+  }
+
+/* =============================
+   HEADER PRINCIPAL
+   ============================= */
 .main-header {
-  margin-left: 100px;
-  margin-right: 100px;
   display: flex;
   align-items: center;
-  padding: 16px 24px;
+  justify-content: space-between;
+  padding: 16px 100px;
   background-color: #0b1221;
-  gap: 16px;
 }
 
-/* Logo */
 .logo img {
   height: 128px;
   width: 128px;
   display: block;
 }
 
-/* Navegación principal */
+/* MENÚ PRINCIPAL */
 .main-nav ul {
   list-style: none;
   display: flex;
   gap: 24px;
 }
 
-.main-nav .dropdown {
+.search-menu-item{
   display: none;
-}
-
-.has-dropdown:hover > .dropdown {
-  display: block;
 }
 
 .main-nav li {
@@ -57,13 +58,11 @@ body {
   transition: color 0.3s;
 }
 
-.main-nav a:hover,
-.main-nav a:focus {
-  color: #1f6feb;
-  outline: none;
+/* Dropdown desktop */
+.has-dropdown .dropdown {
+  display: none;
 }
 
-/* Dropdown */
 .has-dropdown > a::after {
   content: " ▼";
   font-size: 0.6em;
@@ -82,28 +81,25 @@ body {
   z-index: 1000;
 }
 
-.dropdown ul{
-    position: absolute;
-  display: none;
-}
-
-.dropdown li {
-  padding: 0;
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+  display: block;
 }
 
 .dropdown a {
-  padding: 8px 16px;
   display: block;
+  padding: 8px 16px;
+  color: #fff;
   white-space: nowrap;
 }
 
-.dropdown a:hover,
-.dropdown a:focus {
+.dropdown a:hover {
   background-color: #1f6feb;
-  color: #fff;
 }
 
-/* Barra de búsqueda */
+/* =============================
+   BARRA DE BÚSQUEDA
+   ============================= */
 .search-bar form {
   display: flex;
   gap: 8px;
@@ -117,10 +113,9 @@ body {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   min-width: 200px;
-  font-size: 1rem;
 }
 
-.search-bar input[type="search"]::placeholder {
+.search-bar input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -135,148 +130,499 @@ body {
   transition: background-color 0.3s;
 }
 
-.search-bar button:hover,
-.search-bar button:focus {
+.search-bar button:hover {
   background-color: #1456b8;
-  outline: none;
 }
 
-#peliculas-container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columnas iguales */
-  gap: 1rem; /* espacio entre videos */
-  justify-content: center;
-  padding: 0.5rem;
+/* =============================
+   HERO BANNER - PRÓXIMOS ESTRENOS
+  ============================= */
+.titulo-estrenos {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.pelicula-item {
-  width: 250px; /* ancho fijo igual a la columna */
-  background: #1c1c1c;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+#proximo-container .proximo-item .proximo-wrapper {
+  display: flex;
+  flex-direction: row; /* fila: poster a la izquierda, info a la derecha */
+  width: 100%;
+  height: 100%;
+  gap: 20px; /* opcional, espacio entre poster e info */
+}
+#proximo-list {
+  width: 90%;
+  max-width: 1200px;
+  height: 300px;
+  margin: 40px auto;
   overflow: hidden;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#proximo-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#proximo-container .proximo-item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 300px; /* altura fija de escritorio */
+  background-color: #111;
+  flex-shrink: 0;
+  position: relative;
+}
+
+#proximo-container .proximo-item .poster {
+  flex: 0 0 35%;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+#proximo-container .proximo-item .info {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  padding: 40px;
+  color: #fff;
+}
+
+#proximo-container .proximo-item h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+#proximo-container .proximo-item p {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+
+#proximo-container .proximo-item .btn-container {
+  display: flex;
+  gap: 15px;
+}
+
+#proximo-container .proximo-item .btn-container button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.3s ease;
 }
 
-.pelicula-item:hover {
-  transform: scale(1.07);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.9);
-  z-index: 10;
+#proximo-container .proximo-item .btn-container button:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
 }
 
-.pelicula-item img {
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  display: block;
-  border-bottom: 1px solid #222;
-}
+/* =============================
+   CARRUSEL CARTELERA
+   ============================= */
+  #cartelera-list h2{
+    color: #DAAD5C;
+    font-size: 1.8rem;
+    margin-left: 40px;
+    margin-bottom: 20px;
+  }
 
-.vote {
-  margin-left: 20px;
-}
+  #cartelera-list {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+  }
 
-.pelicula-title {
-    font-size: 1rem;
-    font-weight: 600;
+  .fila-peliculas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .peliculas-wrapper {
+    overflow: hidden;
+    flex: 1;
+  }
+
+  #peliculas-container {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .pelicula-item {
+    flex: 0 0 180px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .pelicula-item img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-bottom: 1px solid #333;
+  }
+
+  .pelicula-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+    z-index: 10;
+  }
+
+  .vote {
+    margin-left: 10px;
+    color: gold;
+  }
+
+  .pelicula-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: left;
-    margin-left: 20px;
-}
+  }
 
-.pelicula-meta {
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-  font-size: 0.8rem;
-  color: #aaa;
-}
+  .botones-container {
+    display: flex;
+    gap: 10px;
+    padding: 0.5rem;
+  }
 
-/* Contenedor para botones en línea */
-.botones-container {
-  display: flex;
-  gap: 20px; /* más espacio entre botones */
-  margin-left: 20px;
-  margin-top: 10px;
-  padding-bottom: 20px;
-  align-items: center;
-}
+  .btn-trailer {
+    flex: 1;
+    padding: 8px 0;
+    background-color: #1f6feb;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-/* Botón trailer (antes detalles) */
-.btn-trailer {
-  flex: 1;
-  padding: 10px 0;
-  background-color: #1f6feb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
+  .btn-trailer:hover {
+    background-color: #1456b8;
+  }
 
-.btn-trailer:hover {
-  background-color: #1456b8;
-  box-shadow: 0 4px 12px rgba(20, 86, 184, 0.7);
-}
+  .btn-info {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #1f6feb;
+    border-radius: 50%;
+    color: #1f6feb;
+    background: transparent;
+    font-weight: 700;
+    cursor: pointer;
+  }
 
-/* Botón info redondo más pequeño */
-.btn-info {
-  width: 32px;
-  height: 32px;
-  background-color: transparent;
-  color: #1f6feb;
-  border: 2px solid #1f6feb;
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 28px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  padding: 0;
-  margin-right: 10px;
-}
+  .btn-info:hover {
+    background-color: #1f6feb;
+    color: #fff;
+  }
 
-.btn-info:hover {
-  background-color: #1f6feb;
-  color: white;
-  box-shadow: 0 4px 12px rgba(31, 111, 235, 0.7);
-}
+  /* Botones de scroll */
+  .btn-scroll {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
 
-/* Responsive */
+  /* ================
+   CARRUSEL FAMOSOS
+   ================== */
+   #famosos-list h2{
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+  }
+   
 @media (max-width: 768px) {
+  /* =========================
+  HEADER MÓVIL
+  ========================= */
+  
+  /* Header principal */
   .main-header {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
   }
 
+  /* Barra de búsqueda oculta por defecto */
+  .main-header .search-bar {
+    display: none;
+    position: absolute;
+    top: 50%;                /* centra verticalmente en el header */
+    right: 10px;             /* margen desde la derecha */
+    transform: translateY(-50%); /* corrige desplazamiento vertical */
+    width: 60%;              /* ajusta ancho según diseño */
+    background-color: #0b1221;
+    padding: 6px;
+    border-radius: 4px;
+    z-index: 15;
+  }
+
+  .search-menu-item{
+    display: flex;
+    gap: 8px;
+  }
+
+  /* Logo a la izquierda */
+  .logo img {
+    height: 60px;
+    width: 60px;
+  }
+
+  /* Botón hamburguesa centrado */
+  .hamburger {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 30;
+  }
+
+  .hamburger span {
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  /* Menú oculto por defecto */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #0b1221;
+    border-radius: 6px;
+    padding: 10px 0;
+    gap: 8px;
+    z-index: 20;
+    align-items: left;
+  }
+
+  /* Abrir menú al hacer click en hamburguesa */
+  .main-header.nav-open .main-nav {
+    display: flex;
+  }
+
+  /* Lista de links vertical */
   .main-nav ul {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    align-items: center;
+  }
+
+  .main-nav a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Dropdowns dentro del menú */
+  .dropdown {
+    display: none;
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .has-dropdown.nav-open .dropdown {
+    display: flex;
+  }
+
+  .main-nav button[type="submit"] {
+    margin-left: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: #1f6feb;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* =========================
+     HERO BANNER
+  ========================= */
+  #proximo-list {
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+  }
+
+  #proximo-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
+  }
+
+  #proximo-container .proximo-item {
+    flex: 0 0 90%;
+    max-width: 400px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    min-height: 300px;
+  }
+
+  #proximo-container .proximo-item .proximo-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 10px;
+  }
+
+  #proximo-container .proximo-item .poster {
+    width: 100%;
+    height: 180px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #proximo-container .proximo-item .info {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #proximo-container .proximo-item h2 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  #proximo-container .proximo-item p {
+    display: none;
+  }
+
+  #proximo-container .proximo-item .btn-container {
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
-  .search-bar input[type="search"] {
-    min-width: 150px;
+  /* =========================
+     CARRUSEL PELÍCULAS
+     ========================= */
+  #cartelera-list h2{
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
   }
 
-   #peliculas-container {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      padding: 1rem;
-    }
-    .pelicula-item {
-      max-width: 160px;
-    }
-    .pelicula-title {
-      font-size: 1rem;
-    }
+  #cartelera-list {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .fila-peliculas {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .peliculas-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  #peliculas-container {
+    display: flex;
+    gap: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .pelicula-item {
+    flex: 0 0 100%; /* solo una película visible */
+    max-width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+  }
+
+  .pelicula-item img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-bottom: 1px solid #333;
+  }
+
+  .botones-container {
+    flex-direction: column;
+    gap: 6px;
+    padding: 0.5rem;
+    align-items: center;
+  }
+
+  .btn-trailer {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+
+  .btn-info {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+    line-height: 26px;
+  }
+
+  .btn-scroll {
+    font-size: 1.2rem;
+    padding: 0.4rem;
+  }
 }

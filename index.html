@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>PeliculasOnlineHD</title>
     <link rel="icon" href="./assets/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
@@ -16,7 +16,7 @@
       <img src="./assets/images/logo.png" alt="PeliculasOnlineHD" />
     </a>
   </div>
-
+  <!-- Menú -->
   <nav class="main-nav">
     <ul>
       <li><a href="index.html">Inicio</a></li>
@@ -32,6 +32,10 @@
           <li><a href="#">Terror</a></li>
         </ul>
       </li>
+      <li class="search-menu-item">
+          <input type="search" placeholder="Buscar..." aria-label="Buscar por nombre de video" />
+          <button class="btn-search" aria-label="Buscar">Buscar</button>
+      </li>
     </ul>
   </nav>
   <div class="search-bar">
@@ -40,14 +44,76 @@
       <button type="submit" aria-label="Buscar">Buscar</button>
     </form>
   </div>
+  <div class="hamburger" aria-label="Abrir menú" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
-
 <main>
-  <section id="peliculas-list" aria-label="Listado de peliculas" role="list" itemscope itemtype="https://schema.org/ItemList">
-    <div id="peliculas-container"></div>
+
+  <!-- Carrusel de próximos estrenos -->
+  <h2 class="titulo-estrenos">Próximamente</h2>
+  <section id="proximo-list" aria-label="Próximos estrenos" role="list" itemscope itemtype="https://schema.org/ItemList">
+    <div class="fila-peliculas">
+      <button class="btn-scroll" id="btn-prev-proximo" aria-label="Anterior">&#10094;</button>
+      <div class="peliculas-wrapper" id="proximo-container">
+        <!-- Cada película se inyecta así vía JS -->
+        <div class="pelicula-item">
+          <div class="proxima-pelicula-img">
+            <img src="poster.jpg" alt="Título película">
+          </div>
+          <div class="proxima-pelicula-info">
+            <h3>Título</h3>
+            <p>Descripción breve...</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-scroll" id="btn-next-proximo" aria-label="Siguiente">&#10095;</button>
+
+    </div>
   </section>
+
+  <!-- Carrusel de cartelera -->
+  <section id="cartelera-list" aria-label="Listado de cartelera" role="list" itemscope itemtype="https://schema.org/ItemList">
+    <h2>Cartelera</h2>
+    <div class="fila-peliculas">
+      <button class="btn-scroll" id="btn-prev">&#10094;</button>
+      <div class="peliculas-wrapper">
+        <div id="peliculas-container"></div>
+      </div>
+      <button class="btn-scroll" id="btn-next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Carrusel de actores populares -->
+  <section id="famosos-list" aria-label="Listado de famosos" role="list" itemscope itemtype="https://schema.org/ItemList">
+    <h2>Famosos más populares</h2>
+    <div class="fila-famosos">
+      <button class="btn-scroll" id="btn-prev">&#10094;</button>
+      <div class="famosos-wrapper">
+        <div id="famosos-container"></div>
+      </div>
+      <button class="btn-scroll" id="btn-next">&#10095;</button>
+    </div>
+  </section>
+
 </main>
 
-<script type="module" src="js/peliculas.js"></script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
+
+
+ <!-- Carrusel de películas general 
+  <section id="peliculas-list" aria-label="Listado de peliculas" role="list" itemscope itemtype="https://schema.org/ItemList">
+    <h2>Cartelera</h2>
+    <div class="fila-peliculas">
+      <button class="btn-scroll" id="btn-prev">&#10094;</button>
+      <div class="peliculas-wrapper">
+        <div id="peliculas-container"></div>
+      </div>
+      <button class="btn-scroll" id="btn-next">&#10095;</button>
+    </div>
+  </section>-->
