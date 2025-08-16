@@ -158,7 +158,6 @@ body {
   max-width: 1200px;
   height: 300px;
   margin: 40px auto;
-  overflow: hidden;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -498,13 +497,15 @@ body {
     margin: 15px 0;
     overflow-x: auto;  
   }
-
+  
   #proximo-container {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    flex-wrap: nowrap;
-    scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;  
+    overflow-x: auto;                 /* solo horizontal */
+    -webkit-overflow-scrolling: touch; /* smooth scroll iOS */
+    scroll-snap-type: x mandatory;    /* snap opcional */
   }
 
   #proximo-container .proximo-item {
