@@ -141,13 +141,12 @@ body {
   outline: none;
 }
 
-/* css/estilos.css */
 #peliculas-container {
   display: grid;
-  grid-template-columns: repeat(5, 250px);
-  gap: 1rem 1rem; /* filas más apretadas, columnas con espacio decente */
+  grid-template-columns: repeat(6, 1fr); /* 6 columnas iguales */
+  gap: 1rem; /* espacio entre videos */
   justify-content: center;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
 }
 
 .pelicula-item {
