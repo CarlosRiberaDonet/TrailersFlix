@@ -248,6 +248,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    -webkit-overflow-scrolling: touch; /* habilita scroll táctil en iOS */
   }
 
   .peliculas-wrapper {
@@ -488,7 +489,6 @@ body {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    overflow-x: auto;
     flex-wrap: nowrap;
     scroll-snap-type: x mandatory;
   }
@@ -565,13 +565,11 @@ body {
     display: flex;
     flex-direction: row;
     gap: 0;
-    overflow-x: auto;
     scroll-snap-type: x mandatory;
   }
 
   .peliculas-wrapper {
     width: 100%;
-    overflow-x: auto;
     scroll-snap-type: x mandatory;
   }
 
