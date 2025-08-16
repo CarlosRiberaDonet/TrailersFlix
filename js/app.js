@@ -5,7 +5,7 @@ import { SingleMovieSlider } from './SingleMovieSlider.js';
 document.addEventListener('DOMContentLoaded', () => {
 
   // Cargar el carrusel de próximos estrenos
-  fetch('http://localhost:8080/peliculas/upcoming')
+  fetch('https://peliculasonlinehd.fly.dev/peliculas/upcoming')
     .then(res => res.json())
     .then(data => {
       new SingleMovieSlider(
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cargar el carrusel de películas generales
   cargarPeliculas(
-    'http://localhost:8080/peliculas?playing',
+    'https://peliculasonlinehd.fly.dev/peliculas?playing',
     'peliculas-container',
     'btn-prev',
     'btn-next',
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cargar el carrusel de películas generales
   cargarPeliculas(
-    'http://localhost:8080/peliculas?page=1',
+    'https://peliculasonlinehd.fly.dev/peliculas?page=1',
     'peliculas-container',
     'btn-prev',
     'btn-next',
