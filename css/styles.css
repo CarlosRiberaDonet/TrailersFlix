@@ -587,23 +587,14 @@ body {
   }
 
   #peliculas-container {
-    display: flex;
-    gap: 0;
-    transition: transform 0.3s ease;
-    overflow-x: hidden;
+    overflow-x: auto;                    /* scroll horizontal táctil */
+    -webkit-overflow-scrolling: touch;   /* smooth scroll en iOS */
+    transition: none;                     /* sin animación transform */
   }
 
-  .pelicula-item {
-    flex: 0 0 100%; /* solo una película visible */
-    max-width: 100%;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    background-color: #1e1e1e;
-    overflow-x: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 0 auto;
+  #peliculas-container .pelicula-item {
+    flex: 0 0 80%;                        /* ancho de cada item visible en móvil */
+    scroll-snap-align: start;             /* opcional: snap al soltar */
   }
 
   .pelicula-item img {
