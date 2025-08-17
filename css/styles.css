@@ -143,14 +143,15 @@ body {
   text-align: center;
 }
 
-#proximo-container .proximo-item .proximo-wrapper {
-  display: flex;
-  flex-direction: row; /* fila: poster a la izquierda, info a la derecha */
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  gap: 20px; /* opcional, espacio entre poster e info */
+/* Contenedor del carrusel de próximos estrenos */
+#proximo-container {
+  display: flex;                       /* organiza los items en fila */
+  flex-direction: row;                  /* dirección horizontal */
+  gap: 15px;                            /* espacio entre items */
+  overflow-x: auto;                     /* habilita scroll horizontal */
+  -webkit-overflow-scrolling: touch;    /* scroll suave en iOS */
+  scroll-snap-type: x mandatory;        /* activa snap horizontal obligatorio */
+  padding-bottom: 8px;                  /* espacio inferior para que scroll no toque borde */
 }
 
 #proximo-list {
