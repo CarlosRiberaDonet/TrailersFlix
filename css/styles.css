@@ -143,15 +143,14 @@ body {
   text-align: center;
 }
 
-/* Contenedor del carrusel de próximos estrenos */
-#proximo-container {
-  display: flex;                       /* organiza los items en fila */
-  flex-direction: row;                  /* dirección horizontal */
-  gap: 15px;                            /* espacio entre items */
-  overflow-x: auto;                     /* habilita scroll horizontal */
-  -webkit-overflow-scrolling: touch;    /* scroll suave en iOS */
-  scroll-snap-type: x mandatory;        /* activa snap horizontal obligatorio */
-  padding-bottom: 8px;                  /* espacio inferior para que scroll no toque borde */
+#proximo-container .proximo-item .proximo-wrapper {
+  display: flex;
+  flex-direction: row; /* fila: poster a la izquierda, info a la derecha */
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  gap: 20px; /* opcional, espacio entre poster e info */
 }
 
 #proximo-list {
@@ -499,14 +498,15 @@ body {
     overflow-x: auto;  
   }
   
+  /* Contenedor del carrusel de próximos estrenos */
   #proximo-container {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    flex-wrap: nowrap;  
-    overflow-x: auto;                 /* solo horizontal */
-    -webkit-overflow-scrolling: touch; /* smooth scroll iOS */
-    scroll-snap-type: x mandatory;    /* snap opcional */
+    display: flex;                       /* organiza los items en fila */
+    flex-direction: row;                  /* dirección horizontal */
+    gap: 15px;                            /* espacio entre items */
+    overflow-x: auto;                     /* habilita scroll horizontal */
+    -webkit-overflow-scrolling: touch;    /* scroll suave en iOS */
+    scroll-snap-type: x mandatory;        /* activa snap horizontal obligatorio */
+    padding-bottom: 8px;                  /* espacio inferior para que scroll no toque borde */
   }
 
   #proximo-container .proximo-item {
@@ -519,12 +519,17 @@ body {
     min-height: 300px;
   }
 
-  #proximo-container .proximo-item .proximo-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    gap: 10px;
+  /* Cada item dentro del carrusel */
+  #proximo-container .proximo-item {
+    flex: 0 0 180px;                      /* ancho fijo de cada item */
+    scroll-snap-align: start;             /* cada item encaja al inicio del contenedor */
+    display: flex;                        /* para organizar contenido interno */
+    flex-direction: column;               /* poster arriba, info abajo */
+    gap: 10px;                             /* espacio entre poster e info */
+    background-color: #1e1e1e;            /* fondo de cada item */
+    border-radius: 8px;                    /* esquinas redondeadas */
+    overflow: hidden;                      /* recorta contenido que se salga */
+    transition: transform 0.3s ease;       /* animación suave si se aplica hover o transform */
   }
 
   #proximo-container .proximo-item .poster {
@@ -537,14 +542,20 @@ body {
     background-position: center;
   }
 
-  #proximo-container .proximo-item .info {
-    width: 100%;
-    padding: 15px;
-    text-align: center;
+  /* Contenido interno del item */
+  .proximo-item .info {
+    flex: 1;                               /* ocupa el espacio disponible */
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column;                
     gap: 10px;
+    padding: 15px 20px;                     /* padding interno proporcional */
+    color: #fff;                             /* texto en blanco */
+    max-height: 150px;                       /* limita altura */
+    overflow: hidden;                        /* evita desbordes */
+    display: -webkit-box;                    
+    -webkit-line-clamp: 3;                   /* máximo 3 líneas de texto */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;                 /* "..." si el texto es muy largo */
   }
 
   #proximo-container .proximo-item h2 {
