@@ -7,47 +7,75 @@
  * @param {number} movieWidth - Ancho de cada película + gap en píxeles
  */
 export function initSlider(containerId, prevBtnId, nextBtnId, moviesPerPage, movieWidth) {
-  // Obtenemos referencias a los elementos del DOM
+  // Referencias a elementos del DOM
   const container = document.getElementById(containerId);
   const prevBtn = document.getElementById(prevBtnId);
   const nextBtn = document.getElementById(nextBtnId);
 
-  // El desplazamiento actual del contenedor (en px)
+  // Desplazamiento actual del contenedor en píxeles
   let offset = 0;
 
   // Total de películas en este slider
   const totalMovies = container.children.length;
 
-  // Detectar móvil y ajustar
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      moviesPerPage = 1;
-      movieWidth = container.parentElement.offsetWidth; // ancho del wrapper
-    }
-  // Calculamos el límite máximo de desplazamiento hacia la izquierda
-  // Math.ceil asegura que incluso si la última "página" tiene menos de moviesPerPage, no se pase
+  // Detectar móvil
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    moviesPerPage = 1;                             // mostrar 1 item a la vez
+    movieWidth = container.parentElement.offsetWidth; // ancho del wrapper completo
+    container.style.overflowX = "hidden";          // desactivar scroll táctil nativo
+  }
+
+  // Límite máximo de desplazamiento hacia la izquierda
   const maxOffset = -(Math.ceil(totalMovies / moviesPerPage) - 1) * moviesPerPage * movieWidth;
 
-  // Listener para botón "siguiente"
+  // Función para mover contenedor
+  const moveSlider = (newOffset) => {
+    offset = newOffset;
+    container.style.transform = `translateX(${offset}px)`;
+  };
+
+  // Botón "siguiente"
   nextBtn.addEventListener('click', () => {
     if (offset > maxOffset) {
-      offset -= moviesPerPage * movieWidth;
-      if (offset < maxOffset) offset = maxOffset;
-      container.style.transform = `translateX(${offset}px)`;
+      let newOffset = offset - moviesPerPage * movieWidth;
+      if (newOffset < maxOffset) newOffset = maxOffset;
+      moveSlider(newOffset);
     }
   });
 
-  // Listener para botón "anterior"
+  // Botón "anterior"
   prevBtn.addEventListener('click', () => {
-    // Solo desplazamos si no estamos al principio
     if (offset < 0) {
-      offset += moviesPerPage * movieWidth; // movemos el contenedor a la derecha
-      if (offset > 0) offset = 0; // no pasarse del principio
-      container.style.transform = `translateX(${offset}px)`; // aplicamos el movimiento
+      let newOffset = offset + moviesPerPage * movieWidth;
+      if (newOffset > 0) newOffset = 0;
+      moveSlider(newOffset);
     }
   });
+
+  // Swipe táctil en móviles
+  if (isMobile) {
+    let startX = 0;
+    let isDragging = false;
+
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    container.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      const endX = e.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+
+      if (deltaX > 30) prevBtn.click();   // swipe a la derecha → anterior
+      else if (deltaX < -30) nextBtn.click(); // swipe a la izquierda → siguiente
+
+      isDragging = false;
+    });
+  }
 }
 
 // Ejemplo de uso para tu slider principal
-// 180px ancho de la película + 16px de gap = 196
+// 180px ancho de la película + 16px de gap = 196px
 initSlider('peliculas-container', 'btn-prev', 'btn-next', 6, 196);
