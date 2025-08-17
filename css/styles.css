@@ -165,21 +165,25 @@ body {
 }
 
 #proximo-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  display: flex;                        /* organiza los items en fila */
+  flex-direction: row;                   /* horizontal */
+  gap: 15px;                             /* espacio entre items */
+  overflow-x: hidden;                    /* escritorio: scroll bloqueado, se mueve con botones */
+  scroll-snap-type: x mandatory;         /* opcional: snap al soltar */
+  padding-bottom: 8px;                   /* espacio inferior */
+  transition: transform 0.3s ease;       /* animación para transform de botones */
 }
 
-#proximo-container .proximo-item {
+/* Cada item del carrusel */
+#proximo-container .pelicula-item {
+  flex: 0 0 180px;                       /* ancho fijo en escritorio */
+  scroll-snap-align: start;              /* cada item encaja al inicio */
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 1100px;
-  min-height: 300px; /* altura fija de escritorio */
-  background-color: #111;
-  flex-shrink: 0;
-  position: relative;
+  flex-direction: column;
+  background-color: #1e1e1e;             /* fondo */
+  border-radius: 8px;                     /* esquinas redondeadas */
+  overflow: hidden;                       /* recorta contenido */
+  transition: transform 0.3s ease;        /* animación hover */
 }
 
 #proximo-container .proximo-item .poster {
@@ -497,24 +501,18 @@ body {
     overflow-x: auto;  
   }
 
- /* Contenedor del carrusel de próximos estrenos */
   #proximo-container {
-    display: flex;                       /* organiza los items en fila */
-    flex-direction: row;                  /* dirección horizontal */
-    gap: 15px;                            /* espacio entre items */
-    overflow-x: hidden;                    /* habilita scroll horizontal */
-    scroll-snap-type: x mandatory;        /* activa snap horizontal obligatorio */
-    padding-bottom: 8px;                  /* espacio inferior para que scroll no toque borde */
+    overflow-x: auto;                     /* scroll horizontal táctil */
+    -webkit-overflow-scrolling: touch;    /* smooth scroll iOS */
+    transition: none;                      /* sin transform */
+    padding-bottom: 16px;                  /* más espacio para swipe */
   }
 
-  #proximo-container .proximo-item {
-    flex: 0 0 90%;
-    max-width: 400px;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    min-height: 300px;
+  #proximo-container .pelicula-item {
+    flex: 0 0 80%;                         /* ancho del item visible en móvil */
+    max-width: 400px;                       /* opcional, para que no se agrande demasiado */
+    min-height: 300px;                      /* altura mínima para consistencia */
+    margin: 0 auto;                          /* centrar item si sobra espacio */
   }
 
   #proximo-container .proximo-item .proximo-wrapper {
@@ -577,7 +575,8 @@ body {
     flex-direction: row;
     gap: 0;
     scroll-snap-type: x mandatory;
-    overflow-x: hidden;  
+    overflow-x: hidden;
+    overflow-y: hidden; 
   }
 
   .peliculas-wrapper {
@@ -590,6 +589,7 @@ body {
     overflow-x: auto;                    /* scroll horizontal táctil */
     -webkit-overflow-scrolling: touch;   /* smooth scroll en iOS */
     transition: none;                     /* sin animación transform */
+    overflow-y: hidden; /* bloquea scroll vertical */
   }
 
   #peliculas-container .pelicula-item {
