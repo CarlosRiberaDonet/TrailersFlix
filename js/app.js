@@ -17,12 +17,22 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     });
 
-  // Cargar el carrusel de películas generales
+  // Cargar el carrusel de películas en cartelera
   cargarPeliculas(
     'https://peliculasonlinehd.fly.dev/peliculas?playing',
-    'peliculas-container',
-    'playing-prev',
-    'playing-next',
+    'cartelera-container',
+    'cartelera-prev',
+    'cartelera-next',
+    6,
+    196
+  );
+
+  // Cargar el carrusel de películas trending day
+  cargarPeliculas(
+    'http://localhost:8080/peliculas/trendingDayMovies',
+    'trending-container',
+    'trending-prev',
+    'trending-next',
     6,
     196
   );

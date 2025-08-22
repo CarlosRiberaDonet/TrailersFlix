@@ -4,7 +4,7 @@
 // Clase responsable de obtener datos desde el backend
 export class MovieService {
   /**
-   * @param {string} baseUrl - URL base de tu backend, ej: "http://localhost:8080/peliculas"
+   * @param {string} baseUrl - URL base backend
    */
   constructor(baseUrl) {
     this.baseUrl = baseUrl;

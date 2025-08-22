@@ -76,19 +76,20 @@
       </div>
     </section>
 
-    <!-- Carrusel de cartelera -->
-    <section id="cartelera-list" aria-label="Listado de cartelera" role="list" itemscope itemtype="https://schema.org/ItemList">
-      <h2>Cartelera</h2>
-      <div class="fila-peliculas">
-        <button id="playing-prev" class="btn-scroll">&#10094;</button>
-        <div class="peliculas-wrapper">
-          <div id="peliculas-container">
-            <!-- Las peliculas se inyectarán aquí desde JS -->
-          </div>
-        </div>
-        <button id="playing-next" class="btn-scroll">&#10095;</button>
+ <!-- Carrusel de cartelera -->
+<section id="cartelera-list" aria-label="Listado de cartelera" role="list" itemscope itemtype="https://schema.org/ItemList">
+  <h2>Cartelera</h2>
+  <div class="fila-peliculas">
+    <button id="cartelera-prev" class="btn-scroll">&#10094;</button>
+    <div class="peliculas-wrapper">
+      <div id="cartelera-container" class="peliculas-container">
+        <!-- Las peliculas se inyectarán aquí desde JS -->
       </div>
-    </section>
+    </div>
+    <button id="cartelera-next" class="btn-scroll">&#10095;</button>
+  </div>
+</section>
+
 
       <!-- Famosos más populares -->
       <section id="famosos-list">
@@ -101,7 +102,22 @@
           <button id="famosos-next" class="btn-scroll-famosos">&#8250;</button>
         </div>
       </section>
-     
+
+      
+  <!-- Carrusel trending day peliculas -->
+<section id="trending-day-list" aria-label="Listado de trending day" role="list" itemscope itemtype="https://schema.org/ItemList">
+  <h2>Trending hoy</h2>
+  <div class="fila-peliculas"> <!-- misma clase que cartelera -->
+    <button id="trending-prev" class="btn-scroll">&#10094;</button>
+    <div class="peliculas-wrapper">
+      <div id="trending-container" class="peliculas-container">
+        <!-- Las peliculas se inyectarán aquí desde JS -->
+      </div>
+    </div>
+    <button id="trending-next" class="btn-scroll">&#10095;</button>
+  </div>
+</section>
+
   </main>
   
  <footer id="main-footer">
