@@ -1,0 +1,172 @@
+/* ==============================
+   CARRUSEL CARTELERA
+   ============================== */
+
+/* Contenedor principal */
+#cartelera-list {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: left;
+}
+
+/* Título */
+#cartelera-list h2 {
+  color: #DAAD5C;
+  font-size: 1.8rem;
+  margin-left: auto;       /* se ajusta al ancho del contenedor */
+  margin-bottom: 20px;
+}
+
+/* Fila del carrusel */
+.fila-peliculas {
+  display: flex;
+  position: relative;
+  gap: 16px;
+  padding-bottom: 8px;
+  align-items: center;
+}
+
+/* Wrapper para scroll horizontal */
+.peliculas-wrapper {
+  flex: 1;
+  overflow: hidden; /* ocultar scroll nativo */
+}
+
+/* Contenedor de items */
+#peliculas-container {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.3s ease;
+  scroll-snap-type: x mandatory;
+  padding: 32px 0; /* 32px arriba y abajo, 0 a los lados */
+}
+
+/* Cada película */
+.pelicula-item {
+  flex: 0 0 180px; /* ancho fijo */
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.pelicula-item img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-bottom: 1px solid #333;
+}
+
+.pelicula-item:hover {
+  box-shadow: 0 4px 15px rgba(218, 173, 92, 0.6);
+  transform: translateY(-4px); /* opcional: levantar ligeramente el item */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Información de la película */
+.vote {
+  margin-left: 10px;
+  color: #DAAD5C;
+}
+
+.pelicula-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Botones internos */
+.botones-container {
+  display: flex;
+  gap: 10px;
+  padding: 0.5rem;
+}
+
+.btn-trailer {
+  flex: 1;
+  padding: 8px 0;
+  color: #fff;
+  background-color: #1f6feb;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-trailer:hover {
+  background-color: #DAAD5C;
+}
+
+.btn-info {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #1f6feb;
+  border-radius: 50%;
+  color: #1f6feb;
+  background: transparent;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-info:hover {
+  background-color: #1f6feb;
+  color: #fff;
+}
+
+/* ==============================
+   BOTONES DE SCROLL
+   ============================== */
+
+/* Misma apariencia que famosos */
+.btn-scroll {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.btn-scroll:hover {
+  background-color: #DAAD5C;
+  color: rgba(31, 111, 235, 1);
+}
+
+/* Posición de botones específicos */
+#playing-prev { left: 0; }
+#playing-next { right: 0; }
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media screen and (max-width: 768px) {
+  #peliculas-container {
+    gap: 10px;
+  }
+
+  .pelicula-item {
+    flex: 0 0 45%; /* 2 películas por fila aprox. */
+  }
+
+  .btn-scroll {
+    display: none;
+  }
+}

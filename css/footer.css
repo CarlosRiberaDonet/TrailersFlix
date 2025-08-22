@@ -1,0 +1,51 @@
+/* ===============================
+   FOOTER PRINCIPAL
+   =============================== */
+#main-footer {
+  background-color: #1a1d27; /* tono oscuro coherente con la web */
+  color: #DAAD5C;            /* acento dorado de la web */
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid #333; /* separación sutil */
+}
+
+#main-footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+#main-footer p {
+  margin: 0;
+}
+
+#main-footer .footer-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#main-footer .footer-nav a {
+  color: #DAAD5C;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#main-footer .footer-nav a:hover {
+  color: #fff;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  #main-footer {
+    padding: 25px 15px;
+  }
+
+  #main-footer .footer-nav {
+    gap: 15px;
+  }
+}

@@ -80,4 +80,4 @@ export function initSlider(containerId, prevBtnId, nextBtnId, moviesPerPage, mov
 
 // Ejemplo de uso para tu slider principal
 // 180px ancho de la película + 16px de gap = 196px
-initSlider('proximo-container', 'btn-prev-proximo', 'btn-next-proximo', 6, 196);
+initSlider('proximo-container', 'btn-upcoming-prev', 'btn-upcoming-next', 6, 196);

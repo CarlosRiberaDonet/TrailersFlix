@@ -1,0 +1,11 @@
+/*botones trailer*/
+   .btn-trailer {
+    flex: 1;
+    padding: 8px 0;
+    color: white;
+    background-color: #1f6feb;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+  }

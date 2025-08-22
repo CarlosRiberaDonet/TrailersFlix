@@ -1,5 +1,6 @@
 import { cargarPeliculas } from './peliculas.js';
 import { SingleMovieSlider } from './SingleMovieSlider.js';
+import {loadFamous} from './FamousPeople.js';
 
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       new SingleMovieSlider(
         'proximo-container',
-        'btn-prev-proximo',
-        'btn-next-proximo',
+        'btn-upcoming-prev',
+        'btn-upcoming-next',
         data.results
       );
     });
@@ -20,22 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarPeliculas(
     'https://peliculasonlinehd.fly.dev/peliculas?playing',
     'peliculas-container',
-    'btn-prev',
-    'btn-next',
+    'playing-prev',
+    'playing-next',
     6,
     196
   );
 
-
-  // Cargar el carrusel de películas generales
-  cargarPeliculas(
-    'https://peliculasonlinehd.fly.dev/peliculas?page=1',
-    'peliculas-container',
-    'btn-prev',
-    'btn-next',
-    6,
-    196
-  );
+  // Cargar famosos populares
+  loadFamous();
 
 
   // Menú hamburguesa
